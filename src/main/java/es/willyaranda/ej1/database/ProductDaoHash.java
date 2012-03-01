@@ -7,9 +7,9 @@ import es.willyaranda.ej1.dao.ProductDao;
 import es.willyaranda.ej1.data.Product;
 
 public class ProductDaoHash implements ProductDao {
-	
+
 	private HashMap<Integer, Product> productTable;
-	
+
 	public ProductDaoHash() {
 		productTable = new HashMap<Integer, Product>();
 	}

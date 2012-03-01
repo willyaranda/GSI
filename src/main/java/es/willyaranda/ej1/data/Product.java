@@ -1,9 +1,9 @@
 package es.willyaranda.ej1.data;
 
 public class Product implements BasicData {
-	
+
 	private Integer id;
-	
+
 	public Integer getID() {
 		return id;
 	}
