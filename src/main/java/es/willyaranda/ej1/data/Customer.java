@@ -2,11 +2,11 @@ package es.willyaranda.ej1.data;
 
 public class Customer implements BasicData {
 
-	public int getID() {
+	public Integer getID() {
 		return id;
 	}
 
-	public void setID(int id) {
+	public void setID(Integer id) {
 		this.id = id;
 	}
 
@@ -38,5 +38,5 @@ public class Customer implements BasicData {
 	private String name;
 	private String lastname;
 	private String address;
-
+	
 }
