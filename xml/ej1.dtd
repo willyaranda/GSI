@@ -1,7 +1,7 @@
-<!ELEMENT red (ordenador*, dispositivo*)>
+<!ELEMENT red (ordenador+, dispositivo)>
 <!ATTLIST red
         id CDATA #REQUIRED >
-<!ELEMENT ordenador (sistema,ip*,comentario*)>
+<!ELEMENT ordenador (sistema,ip*,comentario?)>
 <!ELEMENT sistema (programa*)>
 <!ATTLIST sistema
         licencia (si|no) #REQUIRED
@@ -13,8 +13,13 @@
 <!ELEMENT ip EMPTY>
 <!ATTLIST ip
         direccion CDATA #REQUIRED
-        version (ipv4|ipv6) #REQUIRED>
+        version (ipv4|ipv6) "ipv4">
 <!ELEMENT comentario (#PCDATA)>
-<!ELEMENT dispositivo (ip,comentario)>
+<!ELEMENT dispositivo (ip*,comentario?)>
 <!ATTLIST dispositivo
         tipo CDATA #REQUIRED>
+
+<!--O bien podemos usar un grupo de atributos como sigue
+<!ENTITY % grupoAtb "ip,comentario" >
+<!ELEMENT dispositivo (%gruptoAtb;) >
+<!ELEMENT ordenador (sistema, %grupoAtb;) >-->
