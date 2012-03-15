@@ -1,0 +1,9 @@
+1) Se puede abrir y editar en cualquier editor.
+  Se puede ver en cualquier plataforma
+  Atraviesa sin problemas los firewalls
+
+2) Porque tiene estructura de  árbol
+    Gramáticas que sirven para validar un XML, como los DTDs
+    ventajas: definición de tipos, escrito en XML, espacios de nombres
+
+3)
