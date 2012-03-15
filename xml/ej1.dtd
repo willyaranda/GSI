@@ -1,0 +1,20 @@
+<!ELEMENT red (ordenador*, dispositivo*)>
+<!ATTLIST red
+        id CDATA #REQUIRED >
+<!ELEMENT ordenador (sistema,ip*,comentario*)>
+<!ELEMENT sistema (programa*)>
+<!ATTLIST sistema
+        licencia (si|no) #REQUIRED
+        nombre CDATA #REQUIRED
+        version CDATA #REQUIRED>
+<!ELEMENT programa (tipo,nombre)>
+<!ELEMENT tipo (#PCDATA)>
+<!ELEMENT nombre (#PCDATA)>
+<!ELEMENT ip EMPTY>
+<!ATTLIST ip
+        direccion CDATA #REQUIRED
+        version (ipv4|ipv6) #REQUIRED>
+<!ELEMENT comentario (#PCDATA)>
+<!ELEMENT dispositivo (ip,comentario)>
+<!ATTLIST dispositivo
+        tipo CDATA #REQUIRED>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<red id="216">
+<ordenador>
+<sistema licencia="si" nombre="windows" version="95">
+<programa>
+<tipo>antivirus</tipo>
+<nombre> Madelrun antivirus v3.14 </nombre>
+</programa>
+<programa>
+<tipo>ide</tipo>
+<nombre> JPit entorno de desarrollo Java </nombre>
+</programa>
+</sistema>
+<ip direccion="192.168.1.122" version="ipv4"/>
+<comentario>Es un ordenador bastante antiguo</comentario>
+</ordenador>
+<ordenador>
+<sistema licencia="si" nombre="linux" version="RedMad9">
+</sistema>
+<ip direccion="192.168.1.124" version="ipv4"/>
+</ordenador>
+<dispositivo tipo="impresora">
+<ip direccion="192.168.1.127" version="ipv4"/>
+<comentario>Es una impresora</comentario>
+</dispositivo>
+</red>
+
