@@ -2,7 +2,6 @@ package com.gsi.telecom.database;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConnectionDaoMySql {
@@ -21,22 +20,5 @@ public class ConnectionDaoMySql {
 		}
 		return conn = DriverManager.getConnection(url, user, password);
 	}
-
-	
-	/*ResultSet rs = null;
-	try {
-		conn = DriverManager.getConnection(url, user, password);
-		
-		String orden = "select * from cliente c order by c.apellido1, c.apellido2, c.nombre";
-		rs = conn.createStatement().executeQuery(orden);
-		
-		conn.close();
-	} catch (SQLException e) {
-		e.printStackTrace();
-		//Checking if conn or rs are null
-		assertNotNull(conn);
-		assertNotNull(rs);
-	}*/
-
 }
 
