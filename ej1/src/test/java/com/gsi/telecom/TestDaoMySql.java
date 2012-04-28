@@ -244,6 +244,7 @@ public class TestDaoMySql extends TestCase {
 		// Add product to DB
 		con.createStatement().executeUpdate(getOrderAddProduct(product));
 		
+		System.out.println(product);
 		// Delete
 		productDao.delete(product);
 
