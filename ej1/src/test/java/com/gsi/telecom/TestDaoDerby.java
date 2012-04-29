@@ -99,7 +99,7 @@ public class TestDaoDerby extends TestCase {
 	 */
 	private String getOrderAddCustomerProduct(Customer customer, Product product) {
 		return "insert into Customer_Product (id_customer, id_product) VALUES ("
-				+ customer.getId() + ", " + product.getId() +")";
+				+ customer.getId() + ", " + product.getId() + ")";
 	}
 
 	/*
@@ -121,7 +121,8 @@ public class TestDaoDerby extends TestCase {
 				+ (product.getDescription() != null ? product.getDescription()
 						: " \"\" ")
 				+ "', "
-				+ (product.getValid() ? "1" : "0") + ")";
+				+ (product.getValid() ? "1" : "0")
+				+ ")";
 	}
 
 	/*
@@ -314,7 +315,7 @@ public class TestDaoDerby extends TestCase {
 				.getProductsForCustomer(customerA);
 
 		// Check product correctly found
-		assertEquals(product_list.size(), 2);
+		assertEquals(2, product_list.size());
 		Product reference = product_list.get(0);
 		assertTrue(reference.getId().compareTo(product1.getId()) == 0
 				|| reference.getId().compareTo(product2.getId()) == 0);
@@ -510,7 +511,7 @@ public class TestDaoDerby extends TestCase {
 		List<Product> product_list = productDao.getValidProducts();
 
 		// Check product correctly found
-		assertEquals(product_list.size(), 2);
+		assertEquals(2, product_list.size());
 		Product reference = product_list.get(0);
 		assertTrue(reference.getId().compareTo(productValid1.getId()) == 0
 				|| reference.getId().compareTo(productValid2.getId()) == 0);

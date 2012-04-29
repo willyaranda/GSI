@@ -5,10 +5,20 @@ import java.util.HashMap;
 import com.gsi.telecom.dao.CustomerDao;
 import com.gsi.telecom.data.Customer;
 
+/**
+ * Implements CustomerDao interface for HashMaps
+ * 
+ * @author willyaranda
+ * 
+ */
 public class CustomerDaoHash implements CustomerDao {
 
+	// Stores the info of Customers in a HashMap (k-v)
 	private HashMap<Integer, Customer> customerTable;
 
+	/**
+	 * Constructor
+	 */
 	public CustomerDaoHash() {
 		customerTable = new HashMap<Integer, Customer>();
 	}
@@ -28,6 +38,11 @@ public class CustomerDaoHash implements CustomerDao {
 		return select(id);
 	}
 
+	/**
+	 * Returns the HashMap
+	 * 
+	 * @return the HashMap
+	 */
 	public HashMap<Integer, Customer> getCustomersTable() {
 		return customerTable;
 	}
@@ -37,6 +52,11 @@ public class CustomerDaoHash implements CustomerDao {
 		return customerTable.get(id);
 	}
 
+	/**
+	 * Sets the HashMap
+	 * 
+	 * @param hashMapCustomer
+	 */
 	public void setCustomersTable(HashMap<Integer, Customer> hashMapCustomer) {
 		this.customerTable = hashMapCustomer;
 	}

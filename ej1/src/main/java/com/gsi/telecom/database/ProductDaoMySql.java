@@ -9,11 +9,18 @@ import java.util.List;
 import com.gsi.telecom.dao.ProductDao;
 import com.gsi.telecom.data.Product;
 
+/**
+ * Implements the interface ProductDao for MySql databases
+ * 
+ * @author willyaranda
+ * 
+ */
 public class ProductDaoMySql extends ConnectionDaoMySql implements ProductDao {
 
 	@Override
 	public void add(Product basic) throws SQLException {
 		Connection conn = getConnection();
+		// Is valid?
 		int valid = basic.getValid() ? 1 : 0;
 		String orden = "INSERT INTO Product (id, name, price, valid, description) VALUES ("
 				+ "'"
@@ -26,6 +33,7 @@ public class ProductDaoMySql extends ConnectionDaoMySql implements ProductDao {
 				+ valid
 				+ "', '"
 				+ basic.getDescription() + "')";
+		System.out.println("Orden INSERT--> " + orden);
 		conn.createStatement().executeUpdate(orden);
 		conn.close();
 	}
@@ -35,6 +43,7 @@ public class ProductDaoMySql extends ConnectionDaoMySql implements ProductDao {
 		Connection conn = getConnection();
 		try {
 			String orden = "delete from Product where id=" + basic.getId();
+			System.out.println("Orden DELETE--> " + orden);
 			conn.createStatement().executeUpdate(orden);
 			conn.close();
 		} catch (SQLException e) {
@@ -54,6 +63,7 @@ public class ProductDaoMySql extends ConnectionDaoMySql implements ProductDao {
 		ResultSet rs = null;
 		try {
 			String orden = "select * from Product p where valid=1 order by p.id";
+			System.out.println("Orden getValidProducts()--> " + orden);
 			rs = conn.createStatement().executeQuery(orden);
 			if (rs != null) {
 				while (rs.next()) {
@@ -87,6 +97,7 @@ public class ProductDaoMySql extends ConnectionDaoMySql implements ProductDao {
 		ResultSet rs = null;
 		try {
 			String orden = "select * from Product where id=" + id + ";";
+			System.out.println("Orden SELECT--> " + orden);
 			rs = conn.createStatement().executeQuery(orden);
 			// We need to iterate to get the first (and unique) result
 			rs.next();
@@ -113,12 +124,12 @@ public class ProductDaoMySql extends ConnectionDaoMySql implements ProductDao {
 		Connection conn = getConnection();
 		// We suppose that the product IS on the database
 		try {
-			// id, name, price, valid, description
 			int valid = basic.getValid() ? 1 : 0;
 			String orden = "UPDATE Product set name='" + basic.getName()
 					+ "', " + "price='" + basic.getPrice() + "', " + "valid='"
 					+ valid + "', " + "description='" + basic.getDescription()
-					+ "';";
+					+ "' where id=" + basic.getId() + ";";
+			System.out.println("Orden UPDATE--> " + orden);
 			conn.createStatement().executeUpdate(orden);
 			conn.close();
 		} catch (SQLException e) {
@@ -126,5 +137,4 @@ public class ProductDaoMySql extends ConnectionDaoMySql implements ProductDao {
 		}
 		return basic;
 	}
-
 }

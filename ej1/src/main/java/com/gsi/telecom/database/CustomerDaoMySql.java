@@ -10,6 +10,12 @@ import com.gsi.telecom.dao.CustomerDao;
 import com.gsi.telecom.data.Customer;
 import com.gsi.telecom.data.Product;
 
+/**
+ * Implements the CustomerDao interface to connect it though MySql
+ * 
+ * @author willyaranda
+ * 
+ */
 public class CustomerDaoMySql extends ConnectionDaoMySql implements CustomerDao {
 
 	@Override
@@ -25,6 +31,7 @@ public class CustomerDaoMySql extends ConnectionDaoMySql implements CustomerDao 
 				+ "', '"
 				+ customer.getAddress()
 				+ "')";
+		System.out.println("Orden INSERT--> " + orden);
 		conn.createStatement().executeUpdate(orden);
 		conn.close();
 	}
@@ -34,6 +41,7 @@ public class CustomerDaoMySql extends ConnectionDaoMySql implements CustomerDao 
 		Connection conn = getConnection();
 		try {
 			String orden = "delete from Customer where id=" + customer.getId();
+			System.out.println("Orden DELETE--> " + orden);
 			conn.createStatement().executeUpdate(orden);
 			conn.close();
 		} catch (SQLException e) {
@@ -55,11 +63,17 @@ public class CustomerDaoMySql extends ConnectionDaoMySql implements CustomerDao 
 		try {
 			String orden = "select id_product from Customer_Product where id_customer="
 					+ customerA.getId();
+			System.out.println("Orden getProductsForCustomer()--> " + orden);
 			rs = conn.createStatement().executeQuery(orden);
+			// Now we have all id_products for id_customer
 			if (rs != null) {
 				while (rs.next()) {
+					// Now we need to query for the actual whole product (not
+					// just id)
 					String orden2 = "select * from Product p where id="
 							+ rs.getInt("id_product");
+					System.out.println("\tOrden getProductsForCustomer()--> "
+							+ orden2);
 					rs2 = conn.createStatement().executeQuery(orden2);
 					while (rs2.next()) {
 						Integer id = rs2.getInt("id");
@@ -67,12 +81,14 @@ public class CustomerDaoMySql extends ConnectionDaoMySql implements CustomerDao 
 						Float price = rs2.getFloat("price");
 						Boolean valid = rs2.getBoolean("valid");
 						String description = rs2.getString("description");
+						// Let's create the product
 						Product prod = new Product();
 						prod.setId(id);
 						prod.setName(name);
 						prod.setPrice(price);
 						prod.setValid(valid);
 						prod.setDescription(description);
+						// Add to the list
 						list.add(prod);
 					}
 				}
@@ -81,6 +97,7 @@ public class CustomerDaoMySql extends ConnectionDaoMySql implements CustomerDao 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		// And return the list
 		return list;
 	}
 
@@ -91,18 +108,20 @@ public class CustomerDaoMySql extends ConnectionDaoMySql implements CustomerDao 
 		ResultSet rs = null;
 		try {
 			String orden = "select * from Customer where id=" + id + ";";
+			System.out.println("Orden SELECT--> " + orden);
 			rs = conn.createStatement().executeQuery(orden);
 			// We need to iterate to get the first (and unique) result
-			rs.next();
-			Integer idd = rs.getInt("id");
-			String name = rs.getString("name");
-			String lastname = rs.getString("lastname");
-			String address = rs.getString("address");
-			cust = new Customer();
-			cust.setId(idd);
-			cust.setName(name);
-			cust.setLastname(lastname);
-			cust.setAddress(address);
+			if (rs.next()) {
+				Integer idd = rs.getInt("id");
+				String name = rs.getString("name");
+				String lastname = rs.getString("lastname");
+				String address = rs.getString("address");
+				cust = new Customer();
+				cust.setId(idd);
+				cust.setName(name);
+				cust.setLastname(lastname);
+				cust.setAddress(address);
+			}
 			conn.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -117,7 +136,9 @@ public class CustomerDaoMySql extends ConnectionDaoMySql implements CustomerDao 
 		try {
 			String orden = "UPDATE Customer set name='" + customer.getName()
 					+ "', " + "lastname='" + customer.getLastname() + "', "
-					+ "address='" + customer.getAddress() + "';";
+					+ "address='" + customer.getAddress() + "' where id="
+					+ customer.getId() + ";";
+			System.out.println("Orden UPDATE--> " + orden);
 			conn.createStatement().executeUpdate(orden);
 			conn.close();
 		} catch (SQLException e) {

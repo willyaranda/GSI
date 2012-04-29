@@ -4,16 +4,22 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class ConnectionDaoDerby {
+/**
+ * This Class implements the ConnectionDao interface for Derby DB
+ * 
+ * @author willyaranda
+ * 
+ */
+public class ConnectionDaoDerby implements ConnectionDao {
 
-	/* the default framework is embedded */
-	// private String framework = "embedded";
+	// Data to connect to derbyDB
 	private String driver = "org.apache.derby.jdbc.EmbeddedDriver";
 	private String protocol = "jdbc:derby:";
-	String dbName = "telecom"; // the name of the database
+	String dbName = "telecom";
 
 	Connection conn = null;
 
+	@Override
 	public Connection getConnection() throws SQLException {
 		try {
 			Class.forName(driver).newInstance();
