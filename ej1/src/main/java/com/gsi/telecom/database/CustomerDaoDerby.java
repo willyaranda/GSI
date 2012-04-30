@@ -48,7 +48,7 @@ public class CustomerDaoDerby extends ConnectionDaoDerby implements CustomerDao 
 	 * This is a wrapper to the select function
 	 * 
 	 * @param id
-	 * @return
+	 * @return the Customer
 	 * @throws SQLException
 	 */
 	public Customer find(Integer id) throws SQLException {

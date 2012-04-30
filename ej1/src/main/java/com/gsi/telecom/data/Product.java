@@ -44,7 +44,7 @@ public class Product implements BasicData {
 	/**
 	 * Copy constructor
 	 * 
-	 * @param cust1
+	 * @param prod
 	 */
 	public Product(Product prod) {
 		this.id = prod.getId();
