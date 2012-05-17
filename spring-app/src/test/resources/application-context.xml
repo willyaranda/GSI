@@ -9,5 +9,20 @@
 		<property name="user" value="root" />
 		<property name="password" value="" />
 	</bean>
+	
+	<bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource" >
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost/telecom" />
+    	<property name="username" value="root" />
+    	<property name="password" value="" />
+	</bean>
+
+	<bean id="customerDao" class="com.gsi.telecom.database.CustomerDaoMySqlSpring" >
+		<property name="dataSource" ref="myDataSource" />
+	</bean>
+	
+	<bean id="productDao" class="com.gsi.telecom.database.ProductDaoMySqlSpring" >
+		<property name="dataSource" ref="myDataSource" />
+	</bean>
 
 </beans>

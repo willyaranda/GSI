@@ -24,13 +24,13 @@
 	<dependency>
 		<groupId>commons-dbcp</groupId>
 		<artifactId>commons-dbcp</artifactId>
-		<version>20030825.184428</version>
+		<version>1.4</version>
 	</dependency>
 
 	<dependency>
 		<groupId>commons-pool</groupId>
 		<artifactId>commons-pool</artifactId>
-		<version>20030825.183949</version>
+		<version>1.6</version>
 	</dependency>
 
 	<dependency>

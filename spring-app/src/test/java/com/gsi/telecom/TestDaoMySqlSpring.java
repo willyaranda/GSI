@@ -19,6 +19,7 @@ import com.gsi.telecom.database.ConnectionDaoMySqlSpring;
 import com.gsi.telecom.database.CustomerDaoMySql;
 import com.gsi.telecom.database.CustomerDaoMySqlSpring;
 import com.gsi.telecom.database.ProductDaoMySql;
+import com.gsi.telecom.database.ProductDaoMySqlSpring;
 
 /**
  * @author Noelia Morón Tabernero mtnoelia@gmail.com This class tests DAO
@@ -30,6 +31,7 @@ public class TestDaoMySqlSpring extends TestCase {
 	private ConnectionDaoMySqlSpring connectionDaoMysql;
 	
 	private CustomerDaoMySqlSpring customerDao;
+	private ProductDaoMySqlSpring productDao;
 
 	// Random value to generate random fields
 	private Random random = new Random();
@@ -38,6 +40,7 @@ public class TestDaoMySqlSpring extends TestCase {
     	ApplicationContext ctx = new ClassPathXmlApplicationContext("application-context.xml");
     	connectionDaoMysql = (ConnectionDaoMySqlSpring) ctx.getBean("connectionDao");
     	customerDao = (CustomerDaoMySqlSpring) ctx.getBean("customerDao");
+    	productDao = (ProductDaoMySqlSpring) ctx.getBean("productDao");
 	}
     
     protected void tearDown() {
@@ -294,9 +297,6 @@ public class TestDaoMySqlSpring extends TestCase {
 		Customer customerA = buildRandomCustomer();
 		Customer customerB = buildRandomCustomer();
 
-		// Product and Customer daos
-		ProductDaoMySql productDao = new ProductDaoMySql();
-
 		// Open a new connection to db
 		Connection con = connectionDaoMysql.getConnection();
 
@@ -391,9 +391,6 @@ public class TestDaoMySqlSpring extends TestCase {
 		// Build reference product
 		Product product = buildRandomProduct();
 
-		// Product dao
-		ProductDaoMySql productDao = new ProductDaoMySql();
-
 		// Add product to DB
 		productDao.add(product);
 
@@ -423,9 +420,6 @@ public class TestDaoMySqlSpring extends TestCase {
 		// Build reference product
 		Product product = buildRandomProduct();
 
-		// Product dao
-		ProductDaoMySql productDao = new ProductDaoMySql();
-
 		// Open a new connection to db
 		Connection con = connectionDaoMysql.getConnection();
 
@@ -453,9 +447,6 @@ public class TestDaoMySqlSpring extends TestCase {
 			ClassNotFoundException {
 		// Build reference product
 		Product product = buildRandomProduct();
-
-		// Product dao
-		ProductDaoMySql productDao = new ProductDaoMySql();
 
 		// Open a new connection to db
 		Connection con = connectionDaoMysql.getConnection();
@@ -542,10 +533,7 @@ public class TestDaoMySqlSpring extends TestCase {
 			ClassNotFoundException {
 		// Build reference product
 		Product product = buildRandomProduct();
-
-		// Product dao
-		ProductDaoMySql productDao = new ProductDaoMySql();
-
+		
 		// Open a new connection to db
 		Connection con = connectionDaoMysql.getConnection();
 

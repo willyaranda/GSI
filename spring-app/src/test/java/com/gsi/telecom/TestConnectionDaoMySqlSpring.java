@@ -17,6 +17,7 @@ public class TestConnectionDaoMySqlSpring extends TestCase {
     	//connectionDao.setDatabase(database);
     	//connectionDao.setPassword(password);
     	//connectionDao.setUser(user);
+    	Class.forName("com.mysql.jdbc.Driver");
     	ApplicationContext ctx = new ClassPathXmlApplicationContext("application-context.xml");
     	connectionDao = (ConnectionDaoMySqlSpring) ctx.getBean("connectionDao");
     }
@@ -27,7 +28,6 @@ public class TestConnectionDaoMySqlSpring extends TestCase {
     
     public void testConnection() throws SQLException, ClassNotFoundException {
     	Connection con = connectionDao.getConnection();
-    	
     	connectionDao.closeConnection(con);
     }
 }

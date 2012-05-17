@@ -12,12 +12,20 @@ import com.gsi.telecom.dao.CustomerDao;
 import com.gsi.telecom.data.Customer;
 import com.gsi.telecom.data.Product;
 
-public class CustomerDaoMySqlSpring extends ConnectionDaoMySqlSpring implements CustomerDao {
+public class CustomerDaoMySqlSpring implements CustomerDao {
 
-	private ProductDaoMySql productDao = new ProductDaoMySql();
+	private ProductDaoMySql productDao;
 	
 	private DataSource dataSource;
 	
+	public ProductDaoMySql getProductDao() {
+		return productDao;
+	}
+
+	public void setProductDao(ProductDaoMySql productDao) {
+		this.productDao = productDao;
+	}
+
 	public List<Product> getProductsForCustomer(Customer customer) {
 		Connection con;
 		List<Product> list = new ArrayList<Product>();
